@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>347</width>
+    <height>484</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>347</width>
+    <height>484</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>347</width>
+    <height>484</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>Kani Alpha</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="res.qrc">
+    <normaloff>:/img/ajax-loader.gif</normaloff>:/img/ajax-loader.gif</iconset>
+  </property>
+  <property name="styleSheet">
+   <string notr="true"/>
+  </property>
+  <widget class="QWidget" name="centralWidget">
+   <property name="styleSheet">
+    <string notr="true">QWidget#centralWidget { background-image: url(:/img/bg.jpg); }
+</string>
+   </property>
+   <widget class="QLineEdit" name="pathLineEdit">
+    <property name="geometry">
+     <rect>
+      <x>110</x>
+      <y>280</y>
+      <width>101</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLineEdit {  
+   border-style: solid;
+   border-width: 2px;
+   border-color: #b60b2b;
+}</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="copyright">
+    <property name="geometry">
+     <rect>
+      <x>138</x>
+      <y>440</y>
+      <width>71</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 10px Georgia, &quot;Times New Roman&quot;, Times, serif;
+color: #60493E;</string>
+    </property>
+    <property name="text">
+     <string>CrabeDev 2011 </string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="haxButton">
+    <property name="geometry">
+     <rect>
+      <x>70</x>
+      <y>100</y>
+      <width>51</width>
+      <height>35</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton#haxButton{
+border: none;
+	
+	background-image: url(:/img/button.png);
+}
+QPushButton:pressed#haxButton{
+
+	
+	background-image: url(:/img/button.png);
+}
+QPushButton#haxButton:hover{ 
+   border-style: hidden;
+	     border-width: 1px;
+     border-color: #60493E;
+}</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QTextBrowser" name="textBrowser">
+    <property name="geometry">
+     <rect>
+      <x>90</x>
+      <y>30</y>
+      <width>161</width>
+      <height>71</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border: none;
+
+ background-color: transparent;
+</string>
+    </property>
+    <property name="html">
+     <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Ubuntu'; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'MS Shell Dlg 2'; font-size:7pt; color:#ca6149; text-transform:uppercase;&quot;&gt;For CRABS ONLY&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>111</x>
+      <y>266</y>
+      <width>51</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: 10px Georgia, &quot;Times New Roman&quot;, Times, serif;
+color: black;</string>
+    </property>
+    <property name="text">
+     <string>File path:</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pathPushButton">
+    <property name="geometry">
+     <rect>
+      <x>210</x>
+      <y>280</y>
+      <width>27</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"/>
+    </property>
+    <property name="text">
+     <string>...</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="eyeLeft">
+    <property name="geometry">
+     <rect>
+      <x>128</x>
+      <y>169</y>
+      <width>32</width>
+      <height>32</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-image: url(:/img/eaeleft.jpg);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="eyeRight">
+    <property name="geometry">
+     <rect>
+      <x>194</x>
+      <y>161</y>
+      <width>32</width>
+      <height>32</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+  </widget>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources>
+  <include location="res.qrc"/>
+ </resources>
+ <connections/>
+</ui>
