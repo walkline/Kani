@@ -8,5 +8,6 @@
         <file>img/eyeleft.jpg</file>
         <file>img/eyeright.jpg</file>
         <file>img/bg.jpg</file>
+        <file>img/icon.png</file>
     </qresource>
 </RCC>

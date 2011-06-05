@@ -28,6 +28,6 @@ FORMS    +=\
     src/filesmanager.ui
 
 RESOURCES += \
-    src/res.qrc
+    res.qrc
 
 OTHER_FILES +=

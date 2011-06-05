@@ -5,10 +5,19 @@
 #include <QStringList>
 #include <QObject>
 #include <QTextBrowser>
+#include <QThread>
+#include <QFile>
 
-//TODO: implement multi file archiving
+/*TODO:
+ * 1. реализировать многофайловое архивирование. Переписать.
+ */
 
-//for lz77 only
+/* Использует отдельный поток.
+ * Использование:
+   Archiver::Compress(filename, where); // Archiver::Decompress(filename, where);
+   Archiver::run();
+ *
+ */
 class Archiver : public QThread
 {
     Q_OBJECT
@@ -20,6 +29,7 @@ private:
     bool startDeC;
     bool startCom;
 
+
     //Decompress
     QString filename;
     QString where;
@@ -29,11 +39,13 @@ public:
     void AddFiles(QStringList f){ files += f; }
     void AddDirs(QStringList d){ dirs += d; }
     void Decompress(QString _filename, QString _where = "/");
+    //TODO: добавить параметр количество считуемых строк.
     void Compress(QString _filename, QString _where = "/");
 
-    qint32 count;
+    qint32 linesCount;
 
 protected:
+    //QThread
     void run();
 
 signals:

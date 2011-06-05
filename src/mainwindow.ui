@@ -26,8 +26,8 @@
    <string>Kani Alpha</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="res.qrc">
-    <normaloff>:/img/ajax-loader.gif</normaloff>:/img/ajax-loader.gif</iconset>
+   <iconset resource="../res.qrc">
+    <normaloff>:/img/icon.png</normaloff>:/img/icon.png</iconset>
   </property>
   <property name="styleSheet">
    <string notr="true"/>
@@ -190,7 +190,7 @@ color: black;</string>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources>
-  <include location="res.qrc"/>
+  <include location="../res.qrc"/>
  </resources>
  <connections/>
 </ui>

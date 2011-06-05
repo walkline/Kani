@@ -32,7 +32,7 @@ void MainWindow::CompLoadStop()
     isCLoad = false;
     if(!isDLoad)
         movie->stop();
-    ui->textBrowser->append(css+"Process completed."+QString::number(arch.count));
+    ui->textBrowser->append(css+"Process completed."+QString::number(arch.linesCount));
 }
 
 void MainWindow::CompLoadStart()
@@ -50,7 +50,7 @@ void MainWindow::DecompLoadStop()
     isDLoad = false;
     if(!isCLoad)
         movie->stop();
-    ui->textBrowser->append(css+"Process completed."+QString::number(arch.count));
+    ui->textBrowser->append(css+"Process completed.");
 }
 
 void MainWindow::DecompLoadStart()

@@ -5,7 +5,6 @@ Archiver::Archiver()
 {
     startCom = false;
     startDeC = false;
-    count = 0;
 }
 
 void Archiver::Decmpress()
@@ -31,13 +30,12 @@ void Archiver::Compress(QString _filename, QString _where)
 
 void Archiver::run()
 {
-    count = 0;
+    linesCount = 0;
     if(startDeC)
     {
         QFile file(filename);
         if (!file.open(QIODevice::ReadOnly))
             return;
-//        QByteArray data = file.readAll();
         if(where == "/")
             where = filename.remove(filename.count()-5,5);
         QFile write(where);
@@ -64,7 +62,6 @@ void Archiver::run()
         QFile file(filename);
         if (!file.open(QIODevice::ReadOnly))
             return;
-//        QByteArray data = file.readAll();
         if(where == "/")
             where = filename+".kani";
         QFile write(where);
@@ -74,17 +71,15 @@ void Archiver::run()
 
         while(!file.atEnd())
         {
-            count++;
-            QByteArray data = file.readLine();
-//            write.write(LZ77::Decompress(data));
+            linesCount++;
+            file.readLine();
         }
-        wrs << count;
+        wrs << linesCount;
         file.close();
         if (!file.open(QIODevice::ReadOnly))
             return;
         while(!file.atEnd())
         {
-            count++;
             QByteArray data = file.readLine();
             wrs << LZ77::Compress(data);
         }

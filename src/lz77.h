@@ -2,33 +2,9 @@
 #define LZ77_H
 
 #include <QtGui/QApplication>
-#include <QAction>
 #include <QBuffer>
-#include <QDialog>
-#include <QDir>
-#include <QFile>
-#include <QFileDialog>
-#include <QGraphicsScene>
-#include <QGraphicsPixmapItem>
-#include <QLayout>
-#include <QList>
-#include <QMainWindow>
-#include <QMenu>
-#include <QMessageBox>
 #include <QObject>
-#include <QProcess>
-#include <QQueue>
-#include <QRegExp>
-#include <QSettings>
-#include <QtDebug>
-#include <QTimer>
-#include <QtGui>
-#include <QtGui/QMainWindow>
-#include <QTreeWidget>
-#include <QTreeWidgetItem>
-#include <qpushbutton.h>
-#include <QWidget>
-
+#include <QDebug>
 
 //class for daling with LZ77 compression
 //! in most cases, you just want to use the static functions
