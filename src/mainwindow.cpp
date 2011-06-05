@@ -79,11 +79,16 @@ void MainWindow::on_haxButton_clicked()
     {
         if(ui->pathLineEdit->text().contains(".kani"))
         {
-            arch.Decompress(ui->pathLineEdit->text());
+            arch.clear();
+            arch.AddFile(ui->pathLineEdit->text(),true);
+            arch.Decompress();
             arch.start();
         } else
         {
-            arch.Compress(ui->pathLineEdit->text());
+            arch.clear();
+            arch.AddFile(ui->pathLineEdit->text());
+        //    arch.AddFile("/home/walkline/lol/lz77.cpp");
+            arch.Compress();
             arch.start();
         }
         haveFile = false;
@@ -100,8 +105,11 @@ void MainWindow::on_haxButton_clicked()
 
 void MainWindow::on_pathPushButton_clicked()
 {
-//    files=QFileDialog::getOpenFileNames(this,tr("Select files"));
+    QFileDialog dial;
+    dial.setFileMode(QFileDialog::Directory);
+    files=dial.getOpenFileNames(this,tr("Select files"));
+    qDebug()<<files;
 //    if(files.count())
 //        haveFile = true;
-    fm.show();
+//    fm.show();
 }

@@ -1,94 +1,180 @@
 #include "archiver.h"
 #include <QDataStream>
+#include <QDebug>
 
 Archiver::Archiver()
 {
     startCom = false;
     startDeC = false;
+    isArchive = false;
 }
 
-void Archiver::Decmpress()
+void Archiver::clear()
 {
-//ololo
+    Archiver();
+    files.clear();
+    dirs.clear();
+//    delete(linesC);
+//    delete(readTimes);
 }
 
-void Archiver::Decompress(QString _filename, QString _where )
+void Archiver::Decompress(QString _where )
 {
-    filename = _filename;
     where = _where;
     emit DStarted(true);
     startDeC = true;
 }
 
-void Archiver::Compress(QString _filename, QString _where)
+void Archiver::Compress(QString _where)
 {
-    filename = _filename;
     where = _where;
     emit CStarted(true);
     startCom = true;
 }
+
+void Archiver::AddDir(QString name)
+{
+    dirs << name;
+}
+
+void Archiver::AddFile(QString name, bool _isArchive)
+{
+    files << name;
+    isArchive = _isArchive;
+}
+
+void Archiver::WriteInfo()
+{
+    QDataStream wrs(&write);
+    wrs << dirs.count() << files.count();
+//    wrs << dirs;
+    linesC = new quint32[files.count()];
+    readTimes = new quint32[files.count()];
+    for(int i = 0; i < files.count(); ++i)
+    {
+        QFile file(files.at(i));
+        if (!file.open(QIODevice::ReadOnly))
+            return;
+        int lines = 0;
+        while(!file.atEnd())
+        {
+            lines++;
+            file.readLine();
+        }
+        linesC[i] = lines;
+
+        float readT = lines*1.0 / READ_LINES;
+        if(readT > (int) readT)
+            readT++;
+        readTimes[i] = (quint32) readT;
+        qDebug() << "Read Times " << readTimes[i];
+        wrs << files.at(i) << readTimes[i];
+        file.close();
+    }
+}
+
+void Archiver::ReadInfo()
+{
+
+    readS >> dCount >> fCount;
+    //readS >> dirs;
+    readTimes = new quint32[fCount];
+    for(int i = 0; i < fCount; ++i)
+    {
+        quint32 readT;
+        QString str;
+        readS >> str >> readT;
+        files << str;
+        readTimes[i] = readT;
+    }
+}
+
 
 void Archiver::run()
 {
     linesCount = 0;
     if(startDeC)
     {
-        QFile file(filename);
-        if (!file.open(QIODevice::ReadOnly))
+        if(!isArchive)
             return;
-        if(where == "/")
-            where = filename.remove(filename.count()-5,5);
-        QFile write(where);
-        if (!write.open(QIODevice::WriteOnly))
+
+        QFile read(files.at(0));
+        files.clear();
+        if(!read.open(QIODevice::ReadOnly))
             return;
-        QDataStream read(&file);
+        readS.setDevice(&read);
 
-        quint32 dataCount;
-        read >> dataCount;
+        ReadInfo();
 
-        for(int i = 0; i < dataCount; i++)
+        qDebug()<<files;
+        qDebug()<<"files.count()"<<files.count();
+        for(int fileIterator = 0; fileIterator < files.count(); ++fileIterator)
         {
-            QByteArray data;
-            read >> data;
-            write.write(LZ77::Decompress(data));
+            QFile write(files.at(fileIterator));
+            if (!write.open(QIODevice::WriteOnly))
+                return;
+            for(int i = 0; i < readTimes[fileIterator]; ++i)
+            {
+                QByteArray data;
+                readS >> data;
+                qDebug()<<data;
+
+                write.write(LZ77::Decompress(data));
+            }
+            write.close();
         }
+
+        read.close();
+
         emit DEnd(true);
         startDeC=false;
-        file.close();
-        write.close();
     }
     if(startCom)
     {
-        QFile file(filename);
-        if (!file.open(QIODevice::ReadOnly))
-            return;
         if(where == "/")
-            where = filename+".kani";
-        QFile write(where);
+            where = files.at(0)+".kani";
+
+        write.setFileName(where);
         if (!write.open(QIODevice::WriteOnly))
             return;
         QDataStream wrs(&write);
 
-        while(!file.atEnd())
+        WriteInfo();
+
+        for(int fileIterator = 0; fileIterator < files.count(); ++fileIterator)
         {
-            linesCount++;
-            file.readLine();
+            QFile file(files.at(fileIterator));
+            if (!file.open(QIODevice::ReadOnly))
+                return;
+            int _readTimes = 0;
+            int _readLines = 0;
+            QByteArray data;
+            while(!file.atEnd())
+            {
+                _readLines++;
+                data += file.readLine();
+                if(_readLines == READ_LINES)
+                {
+                    _readLines = 0;
+                    _readTimes++;
+                    qDebug()<<data;
+                    wrs << LZ77::Compress(data);
+                    data.clear();
+                }
+            }
+            qDebug() << "if("<<_readTimes<<" < "<<readTimes[fileIterator]<<")";
+            if(_readTimes < readTimes[fileIterator])
+            {
+                qDebug()<<data;
+                wrs << LZ77::Compress(data);
+            }
+            file.close();
         }
-        wrs << linesCount;
-        file.close();
-        if (!file.open(QIODevice::ReadOnly))
-            return;
-        while(!file.atEnd())
-        {
-            QByteArray data = file.readLine();
-            wrs << LZ77::Compress(data);
-        }
+
         emit CEnd(true);
         startCom = false;
-        file.close();
         write.close();
 
     }
-    filename.clear();
     where.clear();
 }
