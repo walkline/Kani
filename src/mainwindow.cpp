@@ -105,11 +105,11 @@ void MainWindow::on_haxButton_clicked()
 
 void MainWindow::on_pathPushButton_clicked()
 {
-    QFileDialog dial;
-    dial.setFileMode(QFileDialog::Directory);
-    files=dial.getOpenFileNames(this,tr("Select files"));
-    qDebug()<<files;
-//    if(files.count())
-//        haveFile = true;
-//    fm.show();
+//    QFileDialog dial;
+//    dial.setFileMode(QFileDialog::Directory);
+//    files=dial.getOpenFileNames(this,tr("Select files"));
+//    qDebug()<<files;
+////    if(files.count())
+////        haveFile = true;
+    fm.show();
 }

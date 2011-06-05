@@ -14,8 +14,6 @@ void Archiver::clear()
     Archiver();
     files.clear();
     dirs.clear();
-//    delete(linesC);
-//    delete(readTimes);
 }
 
 void Archiver::Decompress(QString _where )
