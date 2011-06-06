@@ -7,6 +7,7 @@ Archiver::Archiver()
     startCom = false;
     startDeC = false;
     isArchive = false;
+    fileSize = new quint32[FILES_LIMIT];
 }
 
 void Archiver::clear()
@@ -14,6 +15,8 @@ void Archiver::clear()
     Archiver();
     files.clear();
     dirs.clear();
+    for(int i = 0; i < FILES_LIMIT; ++i)
+        fileSize[i] = 0;
 }
 
 void Archiver::Decompress(QString _where )
@@ -35,10 +38,26 @@ void Archiver::AddDir(QString name)
     dirs << name;
 }
 
+void Archiver::AddFiles(QStringList f)
+{
+    files += f;
+    for(int i = 0; i < files.count(); ++i)
+    {
+        QFile file(files.at(i));
+        if(!file.open(QIODevice::ReadOnly))
+            return;
+        fileSize[i] = file.size();
+    }
+}
+
 void Archiver::AddFile(QString name, bool _isArchive)
 {
     files << name;
     isArchive = _isArchive;
+    QFile file(name);
+    if(!file.open(QIODevice::ReadOnly))
+        return;
+    fileSize[files.count() - 1] = file.size();
 }
 
 void Archiver::WriteInfo()
@@ -87,6 +106,38 @@ void Archiver::ReadInfo()
     }
 }
 
+bool Archiver::isActive()
+{
+    return (files.count())?true:false;
+}
+
+quint32* Archiver::getFilesSize()
+{
+    return fileSize;
+}
+
+QStringList Archiver::getFiles()
+{
+    return files;
+}
+
+void Archiver::DelFile(int index)
+{
+    if(!index && files.count() == 1)
+    {
+        clear();
+        return;
+    }
+    QStringList str;
+    for(int i = 0; i < index; ++i)
+        str << files.at(i);
+    for(int i = index + 1; i < files.count(); ++i)
+    {
+        fileSize[i - 1] = fileSize[i];
+        str << files.at(i);
+    }
+    files = str;
+}
 
 void Archiver::run()
 {

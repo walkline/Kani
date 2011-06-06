@@ -83,8 +83,7 @@ void MainWindow::on_haxButton_clicked()
             arch.AddFile(ui->pathLineEdit->text(),true);
             arch.Decompress();
             arch.start();
-        } else
-        {
+        } else {
             arch.clear();
             arch.AddFile(ui->pathLineEdit->text());
         //    arch.AddFile("/home/walkline/lol/lz77.cpp");
@@ -111,5 +110,13 @@ void MainWindow::on_pathPushButton_clicked()
 //    qDebug()<<files;
 ////    if(files.count())
 ////        haveFile = true;
+    if(QFile::exists(ui->pathLineEdit->text()))
+    {
+        if(ui->pathLineEdit->text().contains(".kani"))
+            arch.AddFile(ui->pathLineEdit->text(),true);
+        else
+            arch.AddFile(ui->pathLineEdit->text());
+    }
+    fm.addArchiver(&arch);
     fm.show();
 }

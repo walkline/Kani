@@ -7,7 +7,9 @@
 #include <QTextBrowser>
 #include <QThread>
 #include <QFile>
+
 #define READ_LINES 100
+#define FILES_LIMIT 200
 
 /*TODO:
  * 1. реализировать многофайловое архивирование. Переписать.
@@ -25,6 +27,7 @@ class Archiver : public QThread
 private:
     QStringList files;
     QStringList dirs;
+    quint32 *fileSize;
     //for decompress
     int fCount;
     int dCount;
@@ -39,7 +42,7 @@ private:
 
     QFile write;
     QFile read;
-     QDataStream readS;
+    QDataStream readS;
 
     void WriteInfo();
     void ReadInfo();
@@ -49,7 +52,8 @@ private:
 
 public:
     Archiver();
-    void AddFiles(QStringList f){ files += f; }
+    void AddFiles(QStringList f);
+    void DelFile(int index);
     void AddFile(QString name, bool _isArchive = false);
     void AddDirs(QStringList d){ dirs += d; }
     void AddDir(QString name);
@@ -59,6 +63,11 @@ public:
 
     void clear();
 
+    bool isActive();
+    QStringList getFiles();
+    quint32* getFilesSize();
+
+    //unused
     qint32 linesCount;
 
 protected:
