@@ -37,24 +37,16 @@ color: #60493E;</string>
 background-image: url(:/img/bg2.jpg);
 }</string>
    </property>
-   <widget class="QWidget" name="">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
       <x>240</x>
-      <y>90</y>
-      <width>411</width>
-      <height>201</height>
+      <y>100</y>
+      <width>401</width>
+      <height>191</height>
      </rect>
     </property>
     <layout class="QGridLayout" name="gridLayout">
-     <item row="0" column="0" colspan="6">
-      <widget class="QTableWidget" name="dataTable">
-       <property name="styleSheet">
-        <string notr="true">background-image: url(:/img/mirror.png);
-</string>
-       </property>
-      </widget>
-     </item>
      <item row="1" column="0">
       <widget class="QLabel" name="label">
        <property name="text">
@@ -97,7 +89,188 @@ background-image: url(:/img/bg2.jpg);
        </property>
       </widget>
      </item>
+     <item row="0" column="0" colspan="6">
+      <widget class="QTableWidget" name="dataTable">
+       <property name="styleSheet">
+        <string notr="true">background-image: url(:/img/mirror.png);
+</string>
+       </property>
+      </widget>
+     </item>
     </layout>
+   </widget>
+   <widget class="QPushButton" name="addButton">
+    <property name="geometry">
+     <rect>
+      <x>220</x>
+      <y>100</y>
+      <width>17</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="toolTip">
+     <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Georgia,Times New Roman,Times,serif'; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Добавить файл&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+    <property name="whatsThis">
+     <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Georgia,Times New Roman,Times,serif'; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton#addButton{
+	background-image: url(:/img/green_plus.png);
+border: none;
+	
+}
+QPushButton:pressed#addButton{
+
+	
+	background-image: url(:/img/green_plus.png);
+}
+QPushButton#addButton:hover{ 
+   border-style: hidden;
+	     border-width: 1px;
+     border-color: #60493E;
+}</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="dellButton">
+    <property name="geometry">
+     <rect>
+      <x>220</x>
+      <y>120</y>
+      <width>17</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="toolTip">
+     <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Georgia,Times New Roman,Times,serif'; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Удалить файл&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton#dellButton{
+	background-image: url(:/img/red_minus.png);
+border: none;
+	
+}
+QPushButton:pressed#dellButton{
+
+	
+	background-image: url(:/img/red_minus.png);
+}
+QPushButton#dellButton:hover{ 
+   border-style: hidden;
+	     border-width: 1px;
+     border-color: #60493E;
+}
+</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="openButton">
+    <property name="geometry">
+     <rect>
+      <x>220</x>
+      <y>140</y>
+      <width>17</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="toolTip">
+     <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Georgia,Times New Roman,Times,serif'; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Открыть архив&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton#openButton{
+	background-image: url(:/img/orange_arrow_2.png);
+	border: none;
+}
+QPushButton:pressed#openButton{
+	background-image: url(:/img/orange_arrow_2.png);
+}
+QPushButton#openButton:hover{ 
+    border-style: hidden;
+	border-width: 1px;
+    border-color: #60493E;
+}
+</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="archButton">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>200</y>
+      <width>100</width>
+      <height>100</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton#archButton{
+	background-image: url(:/img/arch.png);
+	border: none;
+}
+QPushButton:pressed#archButton{
+	background-image: url(:/img/arch.png);
+}
+QPushButton#archButton:hover{ 
+    border-style: hidden;
+	border-width: 1px;
+    border-color: #60493E;
+}
+</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="newButton">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>80</y>
+      <width>100</width>
+      <height>100</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton#newButton{
+	background-image: url(:/img/new.png);
+	border: none;
+}
+QPushButton:pressed#newButton{
+	background-image: url(:/img/new.png);
+}
+QPushButton#newButton:hover{ 
+    border-style: hidden;
+	border-width: 1px;
+    border-color: #60493E;
+}
+</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
    </widget>
   </widget>
  </widget>

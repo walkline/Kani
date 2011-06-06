@@ -9,5 +9,10 @@
         <file>img/eyeright.jpg</file>
         <file>img/bg.jpg</file>
         <file>img/icon.png</file>
+        <file>img/green_plus.png</file>
+        <file>img/red_minus.png</file>
+        <file>img/orange_arrow_2.png</file>
+        <file>img/arch.png</file>
+        <file>img/new.png</file>
     </qresource>
 </RCC>

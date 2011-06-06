@@ -11,7 +11,7 @@ FilesManager::FilesManager(QWidget *parent) :
     ls << "Name" << "Size" << "---";
     ui->dataTable->setHorizontalHeaderLabels(ls);
     ui->dataTable->setRowCount(3);
-    ui->dataTable->setColumnWidth(0, 209);
+    ui->dataTable->setColumnWidth(0, 199);
     ui->dataTable->verticalHeader()->hide();
 //    ui->dataTable->clearSpans();
 }
