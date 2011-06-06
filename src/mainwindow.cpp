@@ -3,7 +3,6 @@
 #include <QFileDialog>
 
 QString css = "<span style=\" font-size:7pt; color:#ca6149; text-transform:uppercase;\">";
-//not crossplatform!!!!
 QString loadingImg = ":/img/ajax-loader.gif";
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -86,7 +85,6 @@ void MainWindow::on_haxButton_clicked()
         } else {
             arch.clear();
             arch.AddFile(ui->pathLineEdit->text());
-        //    arch.AddFile("/home/walkline/lol/lz77.cpp");
             arch.Compress();
             arch.start();
         }
@@ -104,12 +102,6 @@ void MainWindow::on_haxButton_clicked()
 
 void MainWindow::on_pathPushButton_clicked()
 {
-//    QFileDialog dial;
-//    dial.setFileMode(QFileDialog::Directory);
-//    files=dial.getOpenFileNames(this,tr("Select files"));
-//    qDebug()<<files;
-////    if(files.count())
-////        haveFile = true;
     if(QFile::exists(ui->pathLineEdit->text()))
     {
         if(ui->pathLineEdit->text().contains(".kani"))

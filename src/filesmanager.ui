@@ -225,6 +225,13 @@ QPushButton#openButton:hover{
       <height>100</height>
      </rect>
     </property>
+    <property name="toolTip">
+     <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Georgia,Times New Roman,Times,serif'; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Заархивировать\розархивировать.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
     <property name="styleSheet">
      <string notr="true">QPushButton#archButton{
 	background-image: url(:/img/arch.png);
@@ -253,6 +260,13 @@ QPushButton#archButton:hover{
       <height>100</height>
      </rect>
     </property>
+    <property name="toolTip">
+     <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Georgia,Times New Roman,Times,serif'; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Создать новый архив.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
     <property name="styleSheet">
      <string notr="true">QPushButton#newButton{
 	background-image: url(:/img/new.png);
@@ -272,6 +286,12 @@ QPushButton#newButton:hover{
      <string/>
     </property>
    </widget>
+   <zorder>layoutWidget</zorder>
+   <zorder>addButton</zorder>
+   <zorder>dellButton</zorder>
+   <zorder>openButton</zorder>
+   <zorder>newButton</zorder>
+   <zorder>archButton</zorder>
   </widget>
  </widget>
  <resources/>

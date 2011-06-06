@@ -27,6 +27,7 @@ void FilesManager::addArchiver(Archiver *_arch)
 {
     arch = _arch;
     isArchiver = true;
+    arch->clear();
     UpdateData();
 }
 
@@ -76,6 +77,27 @@ void FilesManager::on_openButton_clicked()
                                                 "/",
                                                 tr("Kani Archive (*.kani)"));
     if(name.contains(".kani"))
+    {
+        arch->clear();
         arch->AddFile(name,true);
+    }
+    UpdateData();
+}
+
+void FilesManager::on_archButton_clicked()
+{
+    if(arch->isLoadArchive())
+    {
+        arch->Decompress();
+        arch->start();
+    } else {
+        arch->Compress();
+        arch->start();
+    }
+}
+
+void FilesManager::on_newButton_clicked()
+{
+    arch->clear();
     UpdateData();
 }

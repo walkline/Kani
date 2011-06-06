@@ -33,6 +33,10 @@ private slots:
 
     void on_openButton_clicked();
 
+    void on_archButton_clicked();
+
+    void on_newButton_clicked();
+
 private:
     Ui::FilesManager *ui;
 };

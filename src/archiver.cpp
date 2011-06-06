@@ -85,7 +85,7 @@ void Archiver::WriteInfo()
             readT++;
         readTimes[i] = (quint32) readT;
         qDebug() << "Read Times " << readTimes[i];
-        wrs << files.at(i) << readTimes[i];
+        wrs << files.at(i) << fileSize[i] << readTimes[i];
         file.close();
     }
 }
@@ -98,13 +98,15 @@ void Archiver::ReadInfo()
     readTimes = new quint32[fCount];
     for(int i = 0; i < fCount; ++i)
     {
-        quint32 readT;
+        quint32 readT, size;
         QString str;
-        readS >> str >> readT;
+        readS >> str >> size >> readT;
         files << str;
         readTimes[i] = readT;
+        fileSize[i] = size;
     }
 }
+
 
 bool Archiver::isActive()
 {
@@ -113,12 +115,51 @@ bool Archiver::isActive()
 
 quint32* Archiver::getFilesSize()
 {
-    return fileSize;
+    if(!isArchive)
+        return fileSize;
+    QFile file(files.at(0));
+    if(!file.open(QIODevice::ReadOnly))
+        return 0;
+    QDataStream _readS;
+    _readS.setDevice(&file);
+
+    quint32 *sizef = new quint32[FILES_LIMIT];
+    _readS >> dCount >> fCount;
+    //readS >> dirs;
+    for(int i = 0; i < fCount; ++i)
+    {
+        quint32 readT, size;
+        QString str;
+        _readS >> str >> size >> readT;
+        sizef[i] = size;
+        qDebug() << size;
+    }
+    file.close();
+    return sizef;
 }
 
 QStringList Archiver::getFiles()
 {
-    return files;
+    if(!isArchive)
+        return files;
+    QFile file(files.at(0));
+    if(!file.open(QIODevice::ReadOnly))
+        qDebug() << "cant open file";
+    QDataStream _readS;
+    _readS.setDevice(&file);
+
+    QStringList ls;
+    _readS >> dCount >> fCount;
+    //readS >> dirs;
+    for(int i = 0; i < fCount; ++i)
+    {
+        quint32 readT, size;
+        QString str;
+        _readS >> str >> size >> readT;
+        ls << str;
+    }
+    file.close();
+    return ls;
 }
 
 void Archiver::DelFile(int index)
@@ -223,7 +264,6 @@ void Archiver::run()
         emit CEnd(true);
         startCom = false;
         write.close();
-
     }
     where.clear();
 }

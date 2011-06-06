@@ -63,6 +63,7 @@ public:
 
     void clear();
 
+    bool isLoadArchive(){ return isArchive; }
     bool isActive();
     QStringList getFiles();
     quint32* getFilesSize();
