@@ -6,8 +6,8 @@
 #include <QObject>
 #include <QDebug>
 
-//class for daling with LZ77 compression
-//! in most cases, you just want to use the static functions
+//Класс реализирует зжатие и розжатие данных алгоритмом LZ77
+//Использовать зачастую статические методы
 //  QByteArray stuff = LZ77::Decompress( someCompressedData );
 //  QByteArray compressedData = LZ77::Compress( someData );
 class LZ77
@@ -18,23 +18,15 @@ public:
     void DeleteNode( int p );
     void InitTree();
 
-    //gets the offset in a bytearray if the lz77 magic word
     static int GetLz77Offset( const QByteArray &data );
 
-    //gets the decompressed size of a lz77 compressed buffer
     static quint32 GetDecompressedSize( const QByteArray &data );
 
-    //used internally by the static compression function
     QByteArray Compr( const QByteArray &ba );
 
     static QByteArray Decompress( const QByteArray &compressed, int offset );
 
-    //finds the lz77 magic word and decompressed the data after it
-    //  returns only the decompressed data.  anything before the lz77 magic word is not included
     static QByteArray Decompress( const QByteArray &compressed );
-
-    //compressed a qbytearray with the lz77 argorythm
-    //returns a qbytearray ncluding the lz77 header
     static QByteArray Compress( const QByteArray &ba );
 
 private:

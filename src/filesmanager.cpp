@@ -10,11 +10,9 @@ FilesManager::FilesManager(QWidget *parent) :
     QStringList ls;
     ls << "Name" << "Size" << "---";
     ui->dataTable->setHorizontalHeaderLabels(ls);
-    //ui->dataTable->setRowCount(3);
     ui->dataTable->setColumnWidth(0, 199);
     ui->dataTable->verticalHeader()->hide();
     ui->dataTable->setTextElideMode(Qt::ElideMiddle);
-//    ui->dataTable->clearSpans();
 
     arch = new Archiver;
     data = new QTableWidget;
@@ -37,15 +35,19 @@ void FilesManager::UpdateData()
     quint32* size = new quint32[FILES_LIMIT];
     size = arch->getFilesSize();
     data->setRowCount(files.count());
+    double totalsize = 0;
     for(int i = 0; i < files.size(); ++i)
     {
         QTableWidgetItem *name = new QTableWidgetItem(files.at(i));
         data->setItem(i,0,name);
         QString str = QString::number(size[i]) + " byte";
-        QTableWidgetItem *size = new QTableWidgetItem(str);
-        size->setTextAlignment(Qt::AlignCenter);
-        data->setItem(i,1,size);
+        QTableWidgetItem *_size = new QTableWidgetItem(str);
+        _size->setTextAlignment(Qt::AlignCenter);
+        totalsize += size[i];
+        data->setItem(i,1,_size);
     }
+    ui->sizeLabel->setText(QString::number(totalsize/1024)+" kb");
+    ui->filesLabel->setText(QString::number(files.count()));
 }
 
 FilesManager::~FilesManager()
